@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShutkaNator67 | Добавить анекдот</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Добавить свой анекдот</h1>
+        
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        
+        {% if success %}
+        <div class="success">{{ success }}</div>
+        {% endif %}
+        
+        <form method="POST" class="add-form">
+            <textarea name="text" placeholder="Введите текст анекдота..." rows="5" required></textarea>
+            <button type="submit" class="btn submit">Отправить</button>
+        </form>
+        
+        <div class="info">
+            💡 После добавления анекдот сохранится в файл <strong>UserJokes.txt</strong><br>
+            и сразу станет доступен в случайной выдаче.
+        </div>
+        
+        <div class="footer-links">
+            <a href="/" class="link">← На главную</a>
+        </div>
+    </div>
+</body>
+</html>

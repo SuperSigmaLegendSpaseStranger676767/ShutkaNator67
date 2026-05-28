@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShutkaNator67 | Генератор анекдотов</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ShutkaNator67</h1>
+        <p class="subtitle">Генератор случайных анекдотов</p>
+        
+        <div class="joke-card" id="jokeCard">
+            <div class="joke-text" id="jokeText">{{ joke }}</div>
+            <div class="vote-buttons">
+                <button class="btn up" id="upBtn">👍 Хороший</button>
+                <button class="btn down" id="downBtn">👎 Плохой</button>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn next" id="nextBtn">🎲 Следующий анекдот</button>
+            </div>
+        </div>
+        
+        <div class="message" id="message"></div>
+        
+        <div class="footer-links">
+            <a href="/add" class="link">➕ Добавить свой анекдот</a>
+        </div>
+    </div>
+
+    <script>
+        const jokeText = document.getElementById('jokeText');
+        const upBtn = document.getElementById('upBtn');
+        const downBtn = document.getElementById('downBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const messageDiv = document.getElementById('message');
+        
+        function showMessage(text, isError = false) {
+            messageDiv.textContent = text;
+            messageDiv.className = isError ? 'error-message' : 'success-message';
+            setTimeout(() => {
+                messageDiv.textContent = '';
+                messageDiv.className = '';
+            }, 2000);
+        }
+        
+        async function sendVote(direction) {
+            const currentJoke = jokeText.textContent;
+            
+            try {
+                const response = await fetch(`/vote/${direction}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ joke_text: currentJoke })
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage(data.message);
+                    jokeText.textContent = data.new_joke;
+                } else if (data.error) {
+                    showMessage('❌ ' + data.error, true);
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                showMessage('❌ Ошибка соединения', true);
+            }
+        }
+        
+        async function nextJoke() {
+            try {
+                const response = await fetch('/next', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+                const data = await response.json();
+                jokeText.textContent = data.new_joke;
+            } catch (error) {
+                console.error('Ошибка:', error);
+            }
+        }
+        
+        upBtn.addEventListener('click', () => sendVote('up'));
+        downBtn.addEventListener('click', () => sendVote('down'));
+        nextBtn.addEventListener('click', () => nextJoke());
+    </script>
+</body>
+</html>

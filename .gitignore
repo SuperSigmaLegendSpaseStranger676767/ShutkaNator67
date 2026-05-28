@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+jokes.db
+UserJokes.txt
+.env
+venv/
+env/
+.vscode/
+.idea/
+*.log

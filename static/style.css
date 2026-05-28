@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 600px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.subtitle {
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 30px;
+}
+
+.joke-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.joke-text {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #333;
+    min-height: 120px;
+}
+
+.vote-buttons {
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+    margin: 0 5px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.up {
+    background: #4caf50;
+    color: white;
+}
+
+.down {
+    background: #f44336;
+    color: white;
+}
+
+.next {
+    background: #2196f3;
+    color: white;
+}
+
+.submit {
+    background: #764ba2;
+    color: white;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.nav-buttons {
+    margin-top: 15px;
+}
+
+.footer-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Страница добавления анекдота */
+.add-form {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.add-form textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.add-form textarea:focus {
+    outline: none;
+    border-color: #764ba2;
+}
+
+/* Сообщения об ошибках и успехе */
+.error {
+    background: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.info {
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* Сообщения после голосования */
+.message {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.success-message {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Пустое состояние (нет анекдотов) */
+.empty {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+}
+
+.empty p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Адаптация для телефонов */
+@media (max-width: 500px) {
+    .joke-text {
+        font-size: 1rem;
+        min-height: 100px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .joke-card {
+        padding: 20px;
+    }
+    
+    .add-form {
+        padding: 20px;
+    }
+}
