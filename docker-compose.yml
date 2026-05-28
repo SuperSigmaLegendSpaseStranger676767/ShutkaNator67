@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Микросервис счётчика посещений
+  counter:
+    build: ./microservice_counter
+    container_name: shulkanator_counter
+    ports:
+      - "5001:5001"
+    networks:
+      - shulkanator_network
+
+  # Микросервис фильтрации слов
+  filter:
+    build: ./microservice_filter
+    container_name: shulkanator_filter
+    ports:
+      - "5002:5002"
+    networks:
+      - shulkanator_network
+
+  # Основное приложение
+  main_app:
+    build: .
+    container_name: shulkanator_main
+    ports:
+      - "5000:5000"
+    depends_on:
+      - counter
+      - filter
+    volumes:
+      - ./Hah.txt:/app/Hah.txt
+      - ./UserJokes.txt:/app/UserJokes.txt
+    networks:
+      - shulkanator_network
+
+networks:
+  shulkanator_network:
+    driver: bridge
