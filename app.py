@@ -29,7 +29,7 @@ def vote(direction):
     if direction == 'up':
         message = "Спасибо за оценку! 👍"
     elif direction == 'down':
-        message = "Жаль, что не понравилось 😔"
+        message = "Жаль, что не понравилось... 😔"
     else:
         return jsonify({'error': 'Неверное значение'}), 400
     
